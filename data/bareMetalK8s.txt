@@ -1,0 +1,320 @@
+The definitive guide to bare metal kubernetes 
+Executive summary
+The shift to public cloud computing has brought many innovations and benefits – primarily through intelligent abstractions manifesting as API interfaces. This has enabled automation at scale with CI/CD, and led to the emergence of infrastructure as a service (IAAS), software as a service (SAAS), and more.
+We are in the midst of another great sea change in the history of computing. The familiar cycle of centralisation and decentralisation of compute and storage continues unabated, with a move towards distributed computing starting now. Distributed computing is now adopting the innovations and technologies from public cloud computing, enabling hybrid and edge computing with cloud-like tooling and management.
+Bare metal Kubernetes is a powerful set of technologies that builds on the best ideas behind the public and private cloud, yet abstracts away some toilsome aspects related to virtualisation management and networking. For operators and users, it provides significant benefits, making it easier and faster to ship and maintain complex, distributed applications.
+Bare metal Kubernetes has grown in popularity primarily due to the maturation of several key technologies. Those technologies center around providing cloud-like semantics and interfaces for bare metal management and provisioning (for example, MAAS – Metal as a Service), container management and orchestration (provided by Kubernetes), and hybrid cloud technologies allowing for coherent management of on- and off-premises servers (such as Juju).
+This whitepaper explores:
+What bare metal Kubernetes is
+The technologies bare metal Kubernetes comprises
+The benefits and challenges bare metal Kubernetes presents
+The solutions available to implement bare metal Kubernetes
+
+
+Bare metal Kubernetes explained
+The name alone indicates that bare metal Kubernetes is composed of two key technologies – Kubernetes and bare metal – both of which need to be understood individually in order to understand the whole picture. While combining bare metal and Kubernetes may sound easy at first (after all, they are rather complementary in terms of concerns), there are significant complexities that need to be solved in some of the overlaps and touchpoints. This section introduces each component in more detail and examines how they are combined.
+What is bare metal?
+A trip down memory lane – virtual machines
+The term bare metal is best understood in the context of Virtual Machines (VMs), via a quick trip down memory lane.
+
+Before public cloud and IaaS, and before virtual machines, there were simply computers functioning as servers. Applications such as web services, databases, and proxies were installed directly on the Operating Systems (OS) running on the servers. When something went wrong with the server – for example, somebody accidentally removed a critical file needed by the OS – the application would fail without it. Likewise, anybody with superuser access to the machine would have access to anything running on the machine. Often, security was sacrificed for easier administration—a web server admin might need to restart a web server and, to do so, required superuser rights. Upgrades were painful. If anything went wrong, the entire server would need to be rebuilt.
+Virtual machines
+The IBM CP/CMS Virtual Machine Manager (and others like it) were developed in the 1960s, laying the foundations for virtual machines as we know them today. Sometime around the mid 2000s, virtual machines for production services became increasingly interesting (perhaps because of hardware support  in AMD and Intel CPUs). VMs allowed an entirely separate OS to be installed on top of an existing machine and OS. This was enabled primarily through the usage of a hypervisor. One key benefit was that an application could now be ring fenced off into a different administrative/security domain.  This allowed the aforementioned web server admin the superuser rights needed to administer the web server, without granting access to either the host machine or to services running on other VMs. Significant productivity gains were created by decoupling the lifecycle of the underlying machine from applications (in VMs), as well as the life cycles of applications  from each other.
+
+
+Virtual machines can be conceptualised as machines within the machine, mimicking many of the aspects of a real machine.
+
+
+In addition, VMs could be spun up or down, or created or destroyed,  independently of each other. This provided more flexibility and overall better resource utilisation on the physical machine.
+
+Furthermore, popular hypervisors for managing VMs provided increasingly feature rich management suites  (including APIs) and also led to the creation of open source initiatives such as OpenStack. VMs led to the enablement of the public cloud and Infrastructure as a Service as we know it today. Servers that would otherwise have excess capacity could be shared by users from completely different organisations.
+Sidenote on VMs
+More recently, system containers (LXC) and micro VMs have emerged. System containers are similar to application containers in that they support multiple processes and can therefore provide a closer approximation to a complete OS, including control-plane elements like init systems. They share a single kernel on the host and are more efficient than regular VMs, but cannot do everything a regular VM can, such as network booting. Micro VM runtimes such as Firecracker focus on a lightweight hypervisor and Guest OS.
+Bare metal
+The advent of virtual machines clearly offered great advantages and, as a result, most services today run on top of a VM infrastructure. It became commonplace to refer to VMs simply as “machines” or “servers”—which meant that they became ambiguous terms. Because servers are built using metal materials, the term “metal” became synonymous with real machines, and is now used as a term to differentiate physical machines from virtual machines.
+
+Today, there are many applications that require, or can benefit greatly from, direct access to the metal without the hypervisor layer in between. When the VM layer is stripped out from between an application and the physical server, the “metal” is now exposed, leading to the term “bare metal”.
+
+
+
+A typical server
+Image credit: https://unsplash.com/@freeche
+
+
+In simple terms, bare metal means a physical server with an application running directly on it. The only difference between this and the way applications were deployed pre-VMs is the reasons why it is done. 
+
+Today, bare metal is often associated with a deliberate decision to run applications directly on physical servers, without a virtualization layer in between, usually because the benefits outweigh the traditional issues with doing so. However, many of the benefits of VMs – for example, programmatic (API) interfaces for managing VMs and their operational life cycles – could be applied to managing and administering servers. This paper goes into more detail on how to achieve this in the following sections.
+
+Bare metal applications still face many of the same issues as they did before the advent of VMs. These issues are centered largely around operational management, repeatability, security, administration, and so on, all of which need to be addressed. Many of these issues can be handled by containerization.
+
+What are containers?
+Containers are a virtualisation technology that, rather than abstracting the hardware from the operating system running inside the virtualisation, isolates one or more processes in a lightweight and standard environment. Containers allow users to package and quickly deploy entire applications parallel to each other on the same kernel and hardware, while maintaining isolation among the workloads. 
+
+Containers are generally instantiated from container images, a layered packaging system to distribute applications along with their configuration and runtime dependencies. From development to production, containers power modern cloud applications as they allow developers to move quickly between platforms and versions.
+Inside Google alone, at least two billion containers are generated each week to manage its vast operations. There are many tools to create, deploy, and manage containers, including LXD, Docker, and Kubernetes.
+
+
+The benefits of containers, whether on VMs or bare metal, are:
+
+Faster time to market as developers spend less time debugging environments and more time writing code. Containers provide the ability to package dependencies and ensure there are no conflicts with, or dependencies on, other workloads. It also ensures greater similarity between development and production environments.
+Increased deployment infrastructure options because containers can run anywhere.
+Consistent application deployments, as every containerised application instance is identical to another containerised instance of the same application.
+
+Bare metal benefits greatly from being combined with container technology, as it provides a method to separate applications from one another and also from the host machine.
+
+In comparison to VMs, containers do this more efficiently by utilising the kernel as a shared resource, and by not suffering from virtualisation overheads. Furthermore, in the case of dynamic resource allocation (disk, RAM), there is a significant performance overhead introduced by the hypervisor, which containers do not suffer from.
+
+What is Kubernetes?
+While containers provide application separation and benefits for packaging and deployment, they don’t provide any orchestration or management capabilities. In short, containers need to be managed.
+
+Kubernetes, or K8s for short, is an open source platform pioneered by Google, which started as a simple container orchestration tool but has grown into the first universal cloud platform. It’s one of the most significant advancements in IT since the public cloud came to being in 2009, and has an unparalleled 5-year 30% growth rate in both market revenue and overall adoption.
+What is container orchestration?
+Container orchestration is automating the process of managing the lifecycle of containers, particularly in large, dynamic environments. It automates the deployment, networking, scaling, and availability of containerised workloads and services. Running containers – which are lightweight and usually ephemeral by nature – can be done manually in small numbers. However, managing them at scale in production environments can pose a significant challenge without the automation that container orchestration platforms offer. Kubernetes has become the standard for container orchestration in the enterprise world.
+Kubernetes challenges
+As with any modern technology, and for the sake of completeness, containerisation has some of its own issues even though the industry has achieved a level of maturity. According to the Kubernetes and cloud native operation 2021 report by Canonical, the issues include:
+
+Storage – Containers are stateless and require organisations to provide storage. For bare metal, this can be addressed by running projects such as Ceph.
+Difficulty training users – Moving from the established VM or server world to understanding Kubernetes carries a steep learning curve.
+Lack of skills – Many organisations lack personnel skilled with Kubernetes.
+Legacy applications that are not containerised – In some cases, significant resources need to be spent to port to containers.
+Company IT structure – Existing policies, structures, procedures, and tooling are not always conducive to Kubernetes usage.
+
+However, the industry is continuously addressing these issues. A proof point of this are some of the solutions that have emerged to make Kubernetes easier to adopt and manage, as seen in the Bare metal Kubernetes solutions section in this paper.
+What is Metal as a Service (MAAS)?
+Managing physical servers introduces many challenges that need to be handled efficiently by any operator that has a need to maintain their own data center, server hall, lab/R&D facility, or similar.
+
+
+
+Beyond servers needing to be racked and physically connected, there are numerous tasks and challenges associated with managing them:
+
+IP management
+Equipment replacement
+Inventory management
+Monitoring and logging
+Server repurposing
+Server assignment and access control
+Firmware management
+Hardware and Firmware configuration
+Hardware testing
+Discovery
+OS installation and reinstallation
+Security
+Power monitoring and optimisation
+Machine capability tracking and workload affinity
+
+
+These tasks have traditionally been handled by operational processes and internally developed tooling, collections of scripts, or server vendor tools that are not usually generalised enough to handle servers from different vendors elegantly. In short, it can be a complex proposition to manage a group or fleet of servers.
+
+MAAS provides a cloud-like abstraction layer for operators. It provides a programmatic interface, a well-defined machine lifecycle, and features that address the aforementioned tasks and challenges.
+Operating system and HW machine type support
+As there are many different operating systems that operators need to support, it is important to natively support them in terms of provisioning and setup. 
+
+The same applies for servers. There are thousands of different types of machines, each with their own peculiarities. Not only that, the combination of different firmware versions, component versions, and types quickly becomes unwieldy to administer. MAAS supports many of these out of the box, and continually tracks the most common additions.
+
+
+
+MAAS can automate the installation of many major operating systems across the most common hardware platforms available today
+
+
+Automation and cloud-like, programmatic interfaces
+MAAS has the ability to represent the underlying complexities of bare metal through a programmatic interface, or API, and in a manner that makes sense. For example, low level protocols such as PXE, necessary to install machines over the network, are not of interest to higher layer orchestration tools. Other information, such as machine details (CPU, memory size, disk capacity, etc.) are of interest to the orchestration tools, and so should be exposed.
+
+The way machines are modelled is equally important—the language and paradigms presented need to naturally fit the common workflows and tasks performed on machines.
+ 
+
+Abstracting away lower-level protocols and presenting an API
+
+
+Machine lifecycle
+Ideally, it should be possible to manage bare metal in the same way as VMs are managed. Having this capability unlocks a very powerful ability to repurpose machines at any time. For example, additional machines can be reallocated to handle peak traffic loads in response to a large event like a sports match, and then returned to a pool of unallocated machines and powered down. This use case in particular can save significant operational cost due to energy savings, and promote more climate-friendly data centers.
+
+
+New
+Machines newly discovered by MAAS
+Commissioning
+Detailed inventory of RAM, CPU, disks, NICs and accelerators like GPUs itemised .
+Ready
+A machine ready for allocation.
+Allocated
+Ready machines can be allocated to users. Users can further configure the intended deployment.
+Deploying
+Users then can ask MAAS to turn the machine on and install a complete server operating system from scratch without any manual intervention, configuring network interfaces, disk partitions and more.
+Releasing
+The machine is securely released back to the shared pool of capacity. 
+
+
+
+Combined with an API, abstraction, and a clearly-defined machine lifecycle, it becomes possible to treat bare metal, for the most part, just like a cloud. This enables machines to be considered to be part of any other CI/CD process, and solves, in an efficient manner, many administrative issues associated with managing bare metal that originally led to the introduction of virtualization.
+Benefits of bare metal Kubernetes and comparison with virtual machines
+Performance and predictability
+All workloads have different performance profiles and requirements. Some workloads are deemed non-critical, but there are many that require predictable throughput and latency, particularly in health and safety, transport, and telecommunications. 
+
+Performance gains and enhanced predictability for bare metal versus VMs are due to two major factors. These factors are VM hypervisor layer overhead and the noisy neighbour effect.
+Hypervisor tax
+The hypervisor layer can impact the following areas:
+
+Disk I/O and latency
+CPU throughput and latency
+Network throughput and latency
+Memory throughput and latency
+
+In general, a hypervisor can be assumed to introduce a 5-10% performance overhead, even when using hardware-assisted virtualization technologies such as VT-x and AMD-V. 
+
+Hypervisors are a great technology to place multiple workloads on servers in an oversubscribed manner because it drives average resource utilization up and can reduce capital expenditure. It is most suitable for workloads that are not time or throughput critical. However, workloads that are time or throughput critical benefit from not needing to share resources. A method to judge this is to ask how granular workloads need to be in terms of performance and resources. If the unit of granularity is at the level of a server, then bare metal can be a better choice. Even so, containers also present a way to multiplex multiple workloads onto servers and gain the same average resource utilisation benefits.
+
+
+Image credit: https://unsplash.com/@nypl
+
+
+A good example of how the hypervisor tax can impact cost is in High Performance Computing (HPC). HPC workloads can and do consume all the resources available on a machine. HPC can represent significant capital expenditure, and to lose 5-10% performance on a $5M USD investment represents a loss of $250K USD–$500K USD.
+Noisy neighbour
+The overall impact on an application will vary depending on the profile of the application, and also depend on what other VMs are doing at that particular time. For example, consider the following case:
+
+VM 1 has an I/O heavy workload on it but low CPU load.
+VM 2 has a low I/O workload and a high CPU load.
+
+In this situation, there might not be an appreciable impact. However, consider another case:
+
+VM 1 has a high CPU load and high memory bandwidth needs.
+VM 2 has a high CPU load and high memory bandwidth needs.
+
+Here, it is seen that VM 1 and VM2 will both compete for shared resources, and without coordination, the performance of their applications will suffer and be difficult to predict. For some workloads, this is unacceptable. Techniques such as CPU pinning can help, but in this situation, the CPU cores are also competing for memory bandwidth (among other resources), which is shared by all cores in a non-NUMA setup.
+
+Overcommit ratios also play a big part in overall performance and throughput. Servers that are severely oversubscribed can have extremely detrimental effects for workloads involved. In addition, each VM requires an entirely separate operating system, resulting in reduced disk space available for workloads.
+
+
+
+Noisy neighbours
+Image credit: Joseph Gage https://www.flickr.com/people/181920661@N03/
+
+
+
+Besides, noisy neighbours do not only occur at the level of virtual machines: they occur in containers as well. Kubernetes and the container runtimes it uses have means of applying quotas to the computing resources available to containerized processes, but the extent and precision of this control is generally limited to CPU and memory, while networking and disk bandwidth (or, more generally I/O) are far harder to control.
+
+The key difference between VMs and bare metal Kubernetes is that usually the owner of the Kubernetes cluster (and the bare metal machines) has full knowledge and control of both the machine and the workloads deployed. Of course, this could be achieved with VMs as well, but is often not done. This is related to single- versus multi-tenant, which is explored later in this paper.
+Compatibility and flexibility
+Beyond the hypervisor tax, there are many use cases where specific kernels are required. Usually, this is because of specialised applications that either need direct access to the kernel or require hardware that doesn’t virtualise well.
+
+For example, real-time or low latency kernels are needed for certain Telco use cases, such as baseband processing, or live video streaming (to be specific, synchronised streaming of live events with no or little time deviation between streams). Often, these are associated with specific hardware. In such cases, having a hypervisor and two OSs in between the application and the hardware is unfeasible.
+
+There are also many use cases that require custom hardware or direct access to hardware. Hardware that does not virtualise well or allow resource sharing is another example where hypervisors and VMs are unsuitable. In addition, the hardware may need to be configured via kernel boot options or drivers, in which case, direct access to the bare metal is required.
+
+
+A GPU. Although PCIe passthrough for GPGPU allows passthrough to VM guests, sharing GPUs between applications in different guests is still problematic.
+Image credit: https://unsplash.com/@thomasfos
+
+
+Security and control
+Depending on who controls the underlying hypervisor and kernel, there is no way for a tenant in a VM to control the patch levels or versions of the hypervisor and associated software.
+
+Arguably, managing your own host OS presents different security challenges. However, in the end, for those who want complete control of their stack from top to bottom, including upgrades, patching, and control of the underlying hardware (for example, BIOS and firmware versions, hardware configurations, and so on), bare metal is the only solution.
+
+There are security concerns related to container isolation and breakout versus VMs; however, in the case of multi-tenancy (as covered in the following section), it can be argued that separating tenants by physical machine rather than virtual machine is more secure. 
+
+A poll run by Canonical showed that approximately 55-60% of respondents chose “Control and security” as the top reason to build their own metal cloud.
+
+
+Multi-tenancy and single-tenancy
+The following definitions and discussion address the concept of single- and multi-tenancy for infrastructure.
+What is single-tenancy?
+Single tenancy refers to a resource that is not intended to be shared by more than a single user or organisation. Bare metal server solutions are often said to only support a single-tenancy model.
+What is multi-tenancy?
+Multi-tenancy refers to a resource that can be shared by more than one user or organisation. It is commonly expected that sharing is done securely and in a performant manner, i.e., users cannot interfere with each other. Virtual machines and hypervisors are used as a method to provide multi-tenancy.
+Bare metal multi-tenancy
+It is possible to support multi-tenancy with bare metal. The major differences compared with VMs are the granularity and the method of controlling access. With bare metal, the granularity is at the server level. In other words, a tenant gains access to one or more servers, which are then controlled by them. Bare metal servers can be confined to a virtual network (for example, a VLAN), and be prevented from communicating with other servers outside of the tenant’s control. A different tenant could have access to other servers that are attached to a separate VLAN.
+
+The key to supporting this is to have a system such as MAAS that supports RBAC (Role Based Access Control). The operator of the datacenter (the superuser tenant) needs to own and control the network. The superuser tenant should control access to and allocation of bare metal servers. Once a tenant gains access to one or more bare metal servers, they are free to use them as they see fit, but they are confined to their network namespace.
+
+
+Cost
+Operators that maintain their own servers have already accepted the capital and operational costs associated with the purchase and physical management. Therefore, stripping out the VM layer can remove any costs associated with the hypervisor vendor.
+
+
+With new container management and operator frameworks providing most (if not all) of the functionality afforded by VM management software plus the abstraction of bare metal, overall cost should decrease. Furthermore, as mentioned earlier, the hypervisor tax erodes the value output of the servers by lowering their performance by 5-10%, which tends to drive up both capital and operational expenditures.
+
+Summary
+Having defined the different technologies involved, bare metal Kubernetes can be defined as follows:
+
+Running applications directly on bare metal instead of on virtual machines.
+Providing containers for application isolation and packaging.
+Using Kubernetes for orchestrating and managing containers and their associated applications.
+Providing application isolation, resilience, scalability, and enhanced performance thanks to the removal of hypervisors, VMs, and their associated overhead.
+
+Although the combination of K8s and bare metal addresses many challenges, and although MAAS provides a way to efficiently manage bare metal servers, one piece is still missing that is critical to address: how to coordinate Kubernetes and MAAS coherently. Kubernetes does not, by itself, know how to manage the lifecycle of bare metal machines, even though it is dependent on it. In the next section, we cover two solutions that provide this coordination.
+Bare metal Kubernetes solutions
+Introduction
+Thanks to the APIs available in MAAS, it is easy for anybody to use and build upon it. More complete solutions integrate higher layer orchestration with the bare metal layer. The following are two solutions, one built by Canonical and one by Spectro Cloud, both of which utilise MAAS.
+Solution 1 – Juju, Charmed K8s, and MAAS
+
+What is a Charm?
+A charmed operator (also known, more simply, as a “charm”) encapsulates a single application and all the code and know-how it takes to deploy, upgrade, and operate it, including how to integrate with other related applications. A charm defines and enables the way that applications connect through relations. It is often the case that different charms understand the same relations and, thus, have a measure of interchangeability.
+What is Juju?
+Juju is a Charmed Operator Framework, composed of a Charmed Operator Lifecycle Manager (OLM), and the Charmed Operator SDK. For bare metal Kubernetes, it allows operators to deploy, integrate, and manage Kubernetes clusters and their workloads. It does so through the usage of charms and native integration with MAAS. Juju allows for complete lifecycle automation of any charm-based solution across any cloud environment. 
+
+
+How does Juju integrate with MAAS?
+Juju can treat MAAS and the machines it manages as a separate cloud. It can request machines, remove machines (which releases them back to the cloud for assignment to others), and deploy applications to the machines. Once a MAAS cloud is registered with Juju, it is possible to completely control all machines from Juju, via MAAS.
+Charmed Kubernetes
+Kubernetes itself can be deployed using Juju, thanks to a product called Charmed Kubernetes.
+
+Charmed Kubernetes provides a curated set of tools to build clusters from the ground up, and deliver Containers-as-a-Service (CaaS) across an enterprise.
+
+A highly-available, production-grade Kubernetes cluster, as represented in the Juju GUI
+
+Charmed Kubernetes takes care of Day 0, 1, and 2 operations for a Kubernetes cluster. In essence, this allows an operator to deploy Kubernetes directly to their bare metal cloud with relatively little effort. With Juju, an example command to deploy a Charmed Kubernetes cluster is as simple as follows:
+juju deploy charmed-kubernetes
+Other operations are similarly simple, such as adding or removing workers from the cluster. In the following example, a single command will cause two new workers to be added to the cluster. It can also be seen how constraints are handled. In this case, machines with 6GB of RAM and 2 cores will be requested.
+juju add-unit kubernetes-worker -n 2 --constraints "mem=6G cores=2"
+In the case of bare metal, MAAS uses any constraints provided by Juju and combines it with its knowledge of the machines in the metal cloud in order to provide the requested machines.
+Juju and Kubernetes
+Juju also supports deploying applications to Kubernetes. Once Charmed Kubernetes is installed, it can then be registered with Juju. At this point, Juju can deploy applications to Kubernetes—and just as with the cluster itself, it supports Day 0, 1, and 2 operations for the application.
+Solution 2 – Palette and MAAS
+What is Palette?
+As covered in a Canonical blog, Palette is an integrated platform that enables organizations to easily manage the complete lifecycle of any combination of new or existing, simple or complex, small or large Kubernetes environments across data center, cloud, bare metal, and edge locations.
+
+Built by Spectro Cloud with a unique declarative approach to managing multiple clusters, Palette gives IT teams complete control, consistency, and production-scale efficiencies to provide developers highly-curated Kubernetes stacks and tools based on their specific needs, with granular governance and enterprise-grade security.
+Working with Cluster Profiles
+A foundational concept of Palette is Cluster Profiles. Cluster Profiles are reusable templates that define the desired end-state of what a stack should look like from the infrastructure portion of Kubernetes –  including the OS and add-on application services, such as service mesh, monitoring, authentication, and so on. 
+
+All layers are pre-validated and pre-tested to ensure they will always work together based on the target environment – both from the moment they are deployed, and more importantly as requirements change in time. Upgrading any layer in a Cluster Profile or making any other changes to stack composition will instantly alert users to choose whether they want to apply the same change on their deployed stack, minimizing any risk of incompatibilities between its layers.
+
+Cluster Profiles give complete flexibility to teams to define and deploy the most suitable stacks to support their unique development needs and diverse projects, with granular Day 0 to Day 2 enterprise controls that allow them to easily scale without adding any operational overhead. 
+
+Palette also works with existing environments that can be attached for monitoring or fully ingested into Cluster Profiles that can be reused as required.
+How does Palette integrate with MAAS?
+Palette offers native integration with MAAS, leveraging Spectro Cloud’s open source contribution to the Cluster API CNCF sub-project, the Cluster API MAAS Provider. It enables bare metal Kubernetes on MAAS to be treated like any other Kubernetes cluster, offering full-stack management from the OS to the Kubernetes layer to the application add-on services.
+
+This offers a consistent experience with a single control point for IT operations teams to manage the full lifecycle of Kubernetes clusters end-to-end, without having to deal with the complexity of individually managing the OS and the layers in the Kubernetes stack and add-on application services.
+
+
+Summary
+Virtual machines and bare metal Kubernetes
+Virtual machines are used to provide security and separation between workloads and have been instrumental to the emergence of Infrastructure as a Service and the public cloud. Server resources can be more fully utilised due to oversubscription, maximising return on investments. However, VMs introduce resource and performance overheads, and inflexibility for workloads requiring specific hardware or kernel configurations.
+
+Bare metal Kubernetes is the combination of bare metal and Kubernetes. This powerful combination utilises kubernetes and containerisation to provide many of the benefits associated with VMs such as:
+
+Isolation between workloads and their software development lifecycles.
+Consistency between dev, test and production environments.
+Management, flexible scaling, and orchestration of applications.
+Benefits of bare metal Kubernetes
+Kubernetes and containers provide these benefits in a much more lightweight manner than VMs, and in many areas are much more nimble – for example, scaling a containerised application up or down is a relatively simple exercise.
+
+Furthermore, Bare metal Kubernetes allows full flexibility and control for workloads that need it. There are several reasons why in certain situations, such as HPC or Telco applications, it is beneficial to run a Kubernetes cluster directly on bare metal:
+
+Performance and predictability
+Compatibility and flexibility
+Security and control
+Simplicity/ease of deployment
+Cost
+Enabling bare metal automation with MAAS
+Despite these benefits, Kubernetes has not had a way to gain access to or control the life cycle of bare metal servers. This has resulted in high operational costs due to a lack of automation for managing physical machines in a cluster, or homegrown solutions that burden organisations with maintenance. 
+
+In the public cloud it is easy to scale and manage the VMs or machines backing a Kubernetes cluster. MAAS, Juju and Charmed K8s, or MAAS and Palette provide this same ease of use and automation for bare metal Kubernetes. 
+
+MAAS provides abstraction for physical servers and a cloud-like interface for bare metal clouds. MAAS has enabled the two solutions discussed in this paper (Juju, Charmed K8s or Palette), that bridge the gap between bare metal and Kubernetes and provide coherent and simple Day 0, 1 and 2 orchestration and management for bare metal Kubernetes.
+Conclusion
+Thanks to solutions such as Charmed Kubernetes and Palette using MAAS, operators now have the best of both worlds available to them without needing to manually manage the life cycles of their servers or create difficult to maintain homegrown tooling. 
+
+This allows operators to focus on the things that truly matter, such as time to market, performance and control, and maintainable and scalable applications, without sacrificing operational efficiency or agility.
+Further reading
+Learn more about MAAS at the Metal as a Service webpage. Consult our About MAAS and How it works pages for more details, or read our free ebook.

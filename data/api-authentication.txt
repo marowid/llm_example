@@ -1,0 +1,11 @@
+
+# API authentication
+
+MAAS's API uses OAuth as its authentication mechanism. There isn't a
+third party involved (as in 3-legged OAuth) and so the process used is what's
+commonly referred to as 0-legged OAuth: the consumer accesses protected
+resources by submitting OAuth signed requests.
+
+Note that some API endpoints support unauthenticated requests (i.e. anonymous
+access). See the API documentation &lt;api&gt; for details.
+

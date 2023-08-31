@@ -1,0 +1,301 @@
+Ubuntu is the Linux operating system of choice for experienced developers in enterprise environments.
+
+However, shifting away from a Windows-centric paradigm can raise concerns within IT and security management around level of support, internal skills, security and fleet management tooling.
+
+Ubuntu Pro Desktop, a comprehensive subscription, targets these concerns directly by enabling developers to work on the operating system they prefer whilst remaining fully integrated and compliant with the rest of their Microsoft-centric organisation.
+
+Advanced Active Directory policies ensure that IT managers can leverage the same tools to manage their Ubuntu and Windows devices, whilst Landscape provides detailed compliance and configuration management across desktops, servers and cloud instances.
+
+With kernel livepatch, CIS hardening and FIPS-140 crypto modules, Ubuntu delivers security and compliance for even the most sensitive workloads.
+
+For teams unfamiliar with Linux management, Canonical’s world class support services are here to get your teams up and running quickly.
+
+All of this is delivered across a range of certified hardware that includes your organisation’s existing vendors, reducing hardware costs and account management overhead.
+
+95% of respondents said that enterprise open source is important to their organisation’s overall enterprise infrastructure according to The State of Enterprise Open Source: A Red Hat report, due to the level of innovation and agility it provides.
+
+60% of businesses report they have increased the use of open-source software in the previous year, says Formiti’s The Rise of Open-Source Software in Business: Why It is So Powerful, continuing what looks to be an exponential trend. This move is driven by cost-effectiveness and accessibility but also delivers employee empowerment and satisfaction.
+
+With the above, it’s clear that companies need to be establishing clear and compliant open source strategies to enable their developers to deliver cost-effective and cutting-edge products.
+
+The challenges of open source adoption
+Whilst the needs of developers may be an organisation’s primary concern, IT Managers, CTOs and CISOs also need to ensure that any new technologies introduced into the workplace are secure, auditable, manageable, compliant and compatible with their existing tools and workflows.
+
+When asked about the challenges of adopting open source technologies in the enterprise, these topics were frequently called out as the key barriers to adoption.
+
+The choice of operating system is critical to managing and addressing these concerns, since it is the conduit through which developers access and interact with the open source ecosystem.
+Choosing the right desktop for your environment
+For the majority of organisations Windows is the preferred Desktop operating system. Its prevalence makes it familiar, accessible and the target platform for a variety of proprietary business and productivity tools. Enterprise users benefit from a comprehensive suite of management tools and app ecosystem with Microsoft 365, Active Directory and System Centre Configuration Manager. For most teams, Windows is the ideal solution to the needs of their role.
+
+This picture changes when we focus specifically on developers or data scientists within organisations. For them, open source tools and packages are critical to their role and their workflows require more direct control over their operating system than Windows enables. Choosing a Desktop OS that can enable these workflows but still remain integrated with their colleagues on Windows is therefore the ideal solution.
+
+In recent years MacOS has emerged as a popular choice for developers as a UNIX-based OS with access to a full bash terminal. Whilst this provides a slick development environment and access to powerful computing hardware, it is less useful for OS compatibility in the cloud. The high hardware costs, limited enterprise management tooling and device options mean that enterprise adoption can be costly.
+
+If you’re working in the cloud or IoT, you’re working with Linux. Enabling developers with a Linux desktop is essential for efficiency and productivity. By developing on the same operating system as their production environment, they are reducing testing overhead and simplifying workflows.
+
+Ubuntu is the leading Linux server OS. As a result, Ubuntu desktop is the popular choice for Linux developers. These assertions are borne out in the data. Ubuntu is the OS of choice for professional developers according to the HackerEarth Developer survey, and the most used open source OS in enterprise infrastructure based on OpenLogic’s "2022 State of Open Source" report. As a Debian-based distribution, Ubuntu Desktop also means that developers can benefit from a polished desktop experience when working with Debian servers.
+
+Ubuntu is the most commonly used operating system for OpenStack cloud deployments
+The official Ubuntu docker image has been downloaded over 1 billion times
+Ubuntu is also the most popular Linux distribution on Windows Subsystem for Linux (WSL).
+Ubuntu is the most popular linux web server on the internet.
+It is the primary platform for the Robot Operating System (ROS)
+
+Why experienced developers prefer Ubuntu Desktop
+Ubuntu offers the optimal combination of community, accessibility, security and stability to make it a uniquely well-rounded distro that transitions seamlessly from home use to the enterprise and from desktop to server and IoT.
+
+Ubuntu is the operating system of choice for experienced developers.  It is installed more than 20 million times every year. It delivers an intuitive and accessible user experience whilst providing extensive control over the operating system.
+
+Ubuntu is the target platform for open source software vendors and community projects. All major IDEs officially support and test their software against Ubuntu, making it easy to set up and configure a developer’s preferred environment. Ubuntu ships with the latest toolchains for Python, Rust, Ruby, Go, PHP and Perl, and users get first access to the latest updates for key libraries and packages.
+
+First choice for AI/ML Tooling
+
+In fields such as data science and machine learning, Ubuntu is the OS of choice for many of the most popular frameworks. This includes OpenCV, TensorFlow, Keras, PyTorch and Kubeflow, as well tools like the NVIDIA data science stack, which  enables GPU accelerated data science workloads to be run locally before deploying to the cloud. 
+
+Community support and documentation
+Ubuntu was the first distro to focus on usability and accessibility ever since it was first established in 2004. This mission has attracted millions of users all over the world, expanding the appeal of Linux and open source to students and new developers in addition to supporting veteran Linux users. This long legacy means that developers benefit from a host of tutorials, courses and documentation written with Ubuntu in mind. If they get stuck, there are a wealth of resources curated by our global community to draw upon.
+
+Long Term Supported Releases
+
+Ubuntu is based on a stable and predictable release cadence, with Long Term Supported (LTS) releases landing every two years. For each Ubuntu LTS release, Canonical maintains the base packages and provides security updates for a period of ten years. 
+
+This lifecycle consists of an initial five-year maintenance period, during which security updates for Ubuntu Main repository are publicly available without an Ubuntu Pro Subscription, and additional five years of Extpandedended Security Maintenance (ESM) available with Ubuntu Pro. 
+
+This means that the latest LTS release of Ubuntu, Ubuntu 22.04 LTS, will be supported until 2027 for all users, with this security maintenance continuing through to 2032 under ESM.
+
+Developers can use Ubuntu as a base OS for application and container development with confidence that it will be both secure and simple to maintain.
+
+Between each LTS release, Canonical provides interim releases every six months, which are supported for 9 months. Whilst not recommended for production environments, interim releases serve as a proving ground for new capabilities and many developers run interim releases because they provide newer kernels and libraries useful for rapid devops processes like CI/CD pipelines.
+Development and productivity app ecosystem
+
+For key productivity and development apps, Ubuntu uses a secure, sandboxed packaging format called Snaps. Snaps bundle dependencies to ensure compatibility across any operating system that runs snapd, they are securely sandboxed and automatically update. In addition, Snaps hosted on the Snap Store pass a rigorous security review process to ensure that they only have the necessary permissions needed to run.
+
+The Snap Store hosts more than 7000 applications used by millions of users, including key development tools like Visual Studio Code, IntelliJ, GitKraken and Blender, as well as productivity apps like Microsoft Teams, Zoom, Slack and Dropbox.
+
+This ensures that your developers remain integrated within the wider workplace ecosystem without the need to dual boot or use secondary devices.
+
+Canonical partners with the world’s leading hardware manufacturers to ensure that Ubuntu Desktop works out of the box across hundreds of devices. 
+
+Certified Ubuntu machines range from ultraportable laptops like the Dell XPS series to high end data-science workstations including the HP Z Series and Dell Precision lines. Whether you’re buying with Ubuntu pre-installed or deploying Ubuntu on existing machines you can be confident that developers can get up and running quickly, without the need for additional configuration.
+
+This experience is enabled by Canonical’s collaborations with silicon vendors such as NVIDIA. Our partnership ensures that the latest drivers are optimised for Ubuntu and tools like NVIDIA CUDA enable AI/ML developers to maximise the power of their GPU.
+
+Certified hardware allows IT management and corporate procurement to enable developers by giving them their platform of choice on devices supplied by the same hardware vendors used for Windows machines.
+
+How Ubuntu Pro Desktop delivers peace of mind to IT Managers and security teams
+
+If your developers are running Ubuntu, it’s highly likely they’re already using Ubuntu Desktop “under the desk”, either as a secondary device, dual-booting or as a virtual machine.
+
+With Ubuntu Pro Desktop, Canonical aims to directly address the concerns raised by organisations when it comes to adopting open source and integrate Ubuntu Desktop securely with your wider fleet.
+
+Canonical delivers a straightforward, per seat package that offers comprehensive support, management tooling integration, as well as security compliance and monitoring services. This ensures that Ubuntu becomes the trusted conduit for open source in your organisation.
+
+Ubuntu Pro Desktop supports development teams of all sizes across a range of industries.
+From small businesses and startups looking for out-of-the-box support to government departments and large healthcare providers with strict security requirements. It enables developers running advanced simulations in automotive companies and empowers students in the computer labs of educational institutions.
+
+Introducing new software into any environment requires administrative due diligence. System administrators need tooling to track machine inventory and software running on those machines. CISOs will want an auditable history of activities, and confirmation that policies are applied and enforced.
+
+Landscape is Canonical’s monitoring and management tool for all versions of Ubuntu. Landscape can administer both physical and virtual machines, and managing desktops and servers on premises and in the cloud is as easy as managing one machine.
+
+Beyond security and vulnerability patching, Landscape is an essential component of many organisations’ broader compliance strategies with automated audit logging and customisable on-demand compliance reporting.
+
+Landscape simplifies software installation and removal, configuration, and updates at scale. With powerful automation and remote scripting capabilities, along with software repository control, it is straightforward for system administrators to define policies for workstations that align with their organisation's risk profile.
+
+All machines with a paid Ubuntu Pro subscription can use Landscape SaaS or self-hosted Landscape at no additional cost.
+
+Try Landscape today
+Advanced Active Directory policy management integrates with existing tooling
+
+
+The majority of medium and large enterprises decide to use Active Directory to manage the identity and compliance of their desktop estate. That has been the case for decades now, and companies have invested heavily to create tools and automation workflows aimed at improving the security and efficiency of their IT admin teams.
+Linux desktops, including Debian and Ubuntu, have supported Active Directory integration for a long time through SSSD; however, that was limited to authentication and a small subset of related security policies.
+Ubuntu Desktop 22.04 sees the introduction of ADsys, our new Active Directory client which allows for:
+Native Group Policy Object support for both machine and user policies targeting dconf settings on the client machine.
+Privilege management, allowing the possibility to grant or revoke superuser privileges for the default local user, and Active Directory users and groups.
+Custom scripts execution, giving the possibility to schedule shell scripts to be executed at startup, shutdown, login and logout.
+Active Directory Administrative Templates for all supported versions of Ubuntu. 
+ADSys is supported on Ubuntu starting from 20.04.2 LTS, and tested with Windows Server 2019.
+These features align the Active Directory management experience of Ubuntu as closely as possible to the one available in Windows. Flattening the learning curve required by system administrators to securely manage a fleet of Ubuntu desktop computers at scale.
+Read our Active Directory integration whitepaper
+Watch our webinar
+Security
+Expandedtended Security Maintenance for over 2330,000 packages in Ubuntu repositories
+
+ESM expandstends Canonical’s LTS support commitment to cover security patching for the entirety of the Ubuntu Universe repository, in addition to the core Ubuntu OS packages. This covers over 2330,000 packages, including key applications and libraries such as Node.js, Apache Tomcat and PostgreSQL, to ensure that your developers are getting access to trusted, secure open source. This coverage is included in Ubuntu Pro and Ubuntu Pro Desktop subscriptions. 
+
+In addition ESM extends security patching support for an additional five years beyond the standard LTS support period, giving IT managers more time to plan upgrades on a schedule that works for them.
+
+Finally, with security fixes backporting, ESM provides an unrivalled deployment stability, limiting the need to continuously migrate pieces of your software stack to newer versions in order to ensure that they are security patched.
+
+Livepatch resolves the tension between security, functionality and usability. It applies critical kernel security patches while the system runs without the need for user interaction and no immediate reboots. This means it’s easy to ensure that fixes are applied fleetwide on a schedule defined by you.
+
+Compliance and Hardening
+Regulated and high security environments have complex requirements. Developing or running workloads in these environments requires rigid certifications. Ubuntu Pro provides access to the necessary artefacts to comply with Common Criteria, an international (ISO/IEC 15408) computer security certification for high security environments, and FIPS 140, the U.S. government data protection profile.
+
+The default configuration of Ubuntu balances usability and security. However, systems carrying dedicated workloads can be further hardened to reduce their attack surface. Canonical works with DISA to ensure the Security Technical Implementation Guides (STIG) are available with Ubuntu Pro as well as certified CIS benchmark content to access the widely accepted hardening guide using the OpenSCAP tool.
+
+Support
+With Ubuntu Pro Desktop, users can choose from two support level SLAs: weekday or 24x7 support coverage. These deliver direct access to our world-class enterprise open source support team through our web portal, knowledge base or via phone.
+
+Pricing
+
+Ubuntu Pro Desktop follows the wider Ubuntu Pro pricing structure with a simple, per-seat annual pricing model. Users of all tiers can take advantage of the features of Ubuntu Pro with higher tiers receiving access to our enterprise-grade support services and resources.
+
+Conclusion
+Open source adoption in organisations is increasing. Empowering developers with the best  open source platforms is becoming a critical component of many company strategies. 
+
+However, Windows is by far the dominant enterprise operating system outside of the development realm. Transitioning development teams to Linux within a Microsoft-based ecosystem can be daunting. The question is: how can you adopt Linux securely for development teams in your organisation without compromising on manageability and compliance? 
+
+Ubuntu Desktop is globally recognised as the preferred Linux distribution for open source development and the target platform for key open source frameworks. Ubuntu’s stability and long term support also make it the OS of choice for cloud, container, IoT and application development.
+
+Thanks to Canonical’s close partnerships with silicon and hardware vendors, developers have the flexibility to work across a range of certified laptops, desktops and workstations from their organisation’s existing suppliers.
+
+In this guide, we’ve explained how Ubuntu Pro Desktop, a comprehensive subscription, can enable your organisation to adopt Ubuntu across development teams using management tooling that is familiar and compatible with your existing infrastructure. 
+
+With enterprise-grade, 24/7 support, 10 years maintenance and security patching commitment, compliance reporting and hardening tools, our service is directly targeted at addressing IT managers’ concerns around open source adoption.
+
+Packages
+
+Main:
+5 years
+2,300 packages in the Ubuntu Main repo supported for 5 years
+
+Pro (Infra-Only)
+Main:
+10 years
+2,300 packages in the Ubuntu Main repo supported for 10 years
+
+Pro
+Main + Universe:
+10 years
+2,300 packages in the Ubuntu Main repo included in Infra-only, plus an additional 23,000+ packages in the Ubuntu Universe repository for 10 years
+
+Comprehensive open source software security
+directly from the publisher of Ubuntu
+Ubuntu Pro’s feature set includes
+Non-stop security for CVEs
+Coverage for critical, high, and selected medium
+Common Vulnerabilities and Exposures (CVEs). Critical
+fixes applied in under 24h on average.
+
+23,000 more packages secured
+Expanded coverage for over 10x more open-source
+packages, now including the Ubuntu Universe repository
+
+10 years of Expanded Security Maintenance
+Gain API stability thanks to patches backporting for all
+Ubuntu debs for ten years on every Ubuntu LTS
+
+Zero-Day Vulnerabilities covered
+Many zero-day vulnerabilities addressed under embargo,
+with critical CVEs patched in less than 24h on average
+
+FedRAMP and HIPAA-compliant
+Ubuntu powers mission-critical workloads, with FIPS
+140-2 certified crypto modules
+
+Certified hardening for Ubuntu
+Ubuntu Security Guide (USG) enables CIS Server and
+Workstation Level 1 and 2 scripts, certified audit
+tooling, and DISA-STIG profiles
+
+Ubuntu Pro, Canonical’s comprehensive subscription for secure open source and compliance, is now generally available. Ubuntu Pro, released in beta in October last year, helps teams get timely CVE patches, harden their systems at scale and remain compliant with regimes such as FedRAMP, HIPAA and PCI-DSS.
+
+The subscription expands Canonical’s ten-year security coverage and optional technical support to an additional 23,000 packages beyond the main operating system. It is ideal for organisations looking to improve their security posture, not just for the Main repository of Ubuntu, but for thousands of open-source packages and toolchains.
+
+Timely patching for your favourite open-source toolchains
+Canonical has an 18-year track record of timely security updates for the main Ubuntu OS, with critical CVEs patched in less than 24 hours on average. Ubuntu Pro’s coverage spans critical, high and selected medium CVEs for thousands of applications and toolchains, including Ansible, Apache Tomcat, Apache Zookeeper, Docker, Nagios, Node.js, phpMyAdmin, Puppet, PowerDNS, Python, Redis, Rust, WordPress, and more.
+
+Ubuntu Pro is available for every Ubuntu LTS from 16.04 LTS. It is already in production for large-scale customers offering global services. The beta release was welcomed by the likes of NVIDIA, Google, Acquia, VMWare and LaunchDarkly. Since the beta announcement in October 2022, tens of thousands of Ubuntu users have signed up for the service.
+
+“I manage my own compute cluster leveraging MAAS and other Canonical tools to support my research. The open source security patches delivered through Ubuntu Pro give my team peace of mind, and ensure my servers are secure. Canonical is continuously delivering timely CVE patches covering a broad portfolio of open source applications for the entire ten-year lifetime of an Ubuntu LTS. This brings much needed stability and compliance”, said David A Gutman, MD PhD, Associate Professor of Pathology, Emory University School of Medicine.
+
+A single subscription for security and compliance 
+Besides providing timely security patches, Ubuntu Pro includes tools for compliance management in regulated and audited environments. Ubuntu Security Guide (USG) enables best-in-class hardening and compliance standards such as CIS benchmarks and DISA-STIG profiles.
+
+Ubuntu Pro users can access FIPS-certified cryptographic packages necessary for all Federal Government agencies as well as organisations operating under compliance regimes like FedRAMP, HIPAA, and PCI-DSS.
+
+System management and automated patching at scale are facilitated through Landscape. Ubuntu Pro also includes Livepatch, which patches critical and high-severity kernel vulnerabilities at runtime to minimise the need for unplanned reboots of your Ubuntu estate.
+
+Subscription types and pricing
+The standard Ubuntu Pro subscription covers the full set of security updates for all packages in Ubuntu Main and Universe repositories – this is the most suitable choice in most cases. Ubuntu Pro costs $25 per year for workstation or $500 per year for server and is available directly from ubuntu.com/pro/subscribe with a 30-day free trial.
+
+Ubuntu Pro is also available through our public cloud partners’ marketplaces – AWS, Azure and Google Cloud. It is offered on a per-hour basis, billed directly by the cloud, and priced at approximately 3.5% of the average underlying compute cost.
+
+An Ubuntu Pro (Infra-only) subscription (formerly offered as Ubuntu Advantage for Infrastructure) covers the base OS and the private cloud components needed for large-scale bare-metal deployments, but excludes the new broader application coverage. It is useful for organisations building private clouds that use other guest operating systems for applications.
+
+A free tier is available for personal and small-scale commercial use in up to 5 machines. Official Ubuntu community members can benefit from Ubuntu Pro on up to 50 machines. In order to get the token, log in with your existing Ubuntu One account or create a free account.
+
+Book a call to find the right subscription for your use case
+
+Optional support
+Ubuntu Pro can be combined with up to 24×7 enterprise-grade support coverage for the Ubuntu operating system, MAAS, LXD, Kubernetes, OpenStack or Ceph storage, and now also a range of open source applications.
+
+Arm series Virtual Machines on Google Cloud
+Renowned for their exceptional performance per watt efficiency, Arm-based chips have become ubiquitous in mobile devices and have demonstrated their capabilities for supercomputing workloads. Google Cloud introduces the Tau T2A machine series as the inaugural Arm-based series available on Compute Engine. With Ampere Altra’s single-threaded CPU, it serves as an outstanding platform for general-purpose compute workloads. When you find yourself in the following scenarios, consider utilizing the Tau T2A general-purpose Arm VMs:
+
+Running compute-intensive workloads that require rapid scalability on-demand.
+Optimizing for cost-effective performance on Arm-compatible workloads.
+Leveraging modern, open-source software stacks.
+Developing and testing mobile or embedded systems that utilize an Arm CPU.
+Evaluating the suitability of an Arm CPU for your specific workload.
+Ubuntu Pro is the ideal choice for open source security
+Ubuntu Pro is the ideal choice when it comes to open source security. It offers a comprehensive range of security features directly from the publisher of Ubuntu. Key features of Ubuntu Pro include:
+
+Non-stop security for CVEs: Ubuntu Pro ensures coverage for critical, high, and selected medium Common Vulnerabilities and Exposures (CVEs). Critical fixes are applied in under 24 hours on average.
+Zero-Day Vulnerabilities covered: Ubuntu Pro addresses many zero-day vulnerabilities under embargo and ensures critical CVEs are patched in less than 24 hours on average.
+Secure packages: Ubuntu Pro extends its coverage to secure over 23,000 additional open-source packages, including the Ubuntu Universe repository, making it more comprehensive.
+Compliance with FedRAMP and HIPAA: Ubuntu Pro is compliant with FedRAMP and HIPAA standards, making it suitable for powering mission-critical workloads. It utilizes FIPS 140-2 certified crypto modules.
+Extended Security Maintenance: Ubuntu Pro offers 10 years of Expanded Security Maintenance, ensuring API stability through backported patches for all Ubuntu debs on every Ubuntu LTS release.
+Certified hardening: Ubuntu Pro provides certified hardening through the Ubuntu Security Guide (USG). It enables the implementation of CIS Server and Workstation Level 1 and 2 scripts, certified audit tooling, and DISA-STIG profiles.
+With its robust security features and certifications, Ubuntu Pro is designed to meet the stringent security requirements of open source software. It is a reliable choice for organizations seeking a secure and stable operating system.
+
+Why does your OS choice matter for cloud cyber security?
+Let’s first talk about why your choice of operating system matters for security. While developers put in a lot of effort to secure their applications, the security guarantees they provide are just one piece of the puzzle.
+
+Once your application is running on a platform in production, threats can still arise from the privileged system software, which includes the operating system, virtual machine manager, and the platform’s firmware.
+
+By design, this software has extensive access to all of your application’s resources, and if it ever becomes malicious or compromised, it can leak all of your application’s sensitive data. Therefore, It is crucial to recognise that the security of the operating system sets the upper limit for application security. So what security measures does Ubuntu offer for cloud workloads?
+
+Cloud cyber security with Ubuntu 
+Ubuntu offers many built-in security features like Full disk encryption, Mandatory Access Control via AppArmor, filesystem capabilities and UEFI secure boot. To further improve your security posture, you can also enable additional security features with an Ubuntu Pro subscription.
+
+Ubuntu Pro is Canonical’s comprehensive subscription for open source software security. When used on the public cloud, Ubuntu Pro will take your security to a whole new level. Let us  break down what’s included:
+
+Wide security coverage: Ubuntu Pro provides comprehensive security patching for over 25,000 open-source packages, including popular applications like Apache Kafka, NGINX, MongoDB, Redis, and PostgreSQL.
+Reduced downtime: With Ubuntu Pro’s Livepatch Service, you can enjoy instantaneous patches of your kernel’s high and critical CVEs at run time, with no need for an immediate reboot. This can greatly minimise your business disruptions and maximise your  uptime.
+10 years of platform stability and peace of mind: Canonical guarantees 10 years of security maintenance for Ubuntu Pro users running LTS releases, ensuring a decade of stability and protection for your workloads.
+Compliance certifications Ubuntu Pro offers automation and auditing tooling for DISA-STIG, CIS hardening and auditing, FIPS-certified cryptographic modules, and more. It simplifies compliance processes and helps you meet regulatory requirements effortlessly.
+24/7 support: Optional weekday or 24/7 support is also available with Ubuntu Pro, ensuring that you have expert assistance whenever you need it. It includes troubleshooting, break fix and bug fix on 25,000 open source packages and a wide set of applications, with 1 hour first response time for critical, disruptive issues with 24/7 support.
+Ubuntu Pro is free for up to 5 machines for personal and small-scale commercial use, or up to 50 machines for official Ubuntu Community members.
+
+Enhancing cloud cyber security with confidential computing
+While security hardening and automated CVE patching are essential for protecting your public cloud workloads from known security vulnerabilities, they cannot protect your data from zero-day vulnerabilities within the cloud’s privileged system software, or from a potentially malicious cloud provider. 
+
+This is because, up until recently, there were no available mechanisms for protecting sensitive workloads at run-time. Today, confidential computing offers a systems-level primitive that allows you to run your applications within a hardware-rooted logically isolated execution environment. 
+
+Ubuntu Confidential VMs
+Using AMD SEV-SNP or Intel TDX CPU extensions, you can deploy Ubuntu Confidential VMs whose system memory and CPU registers are encrypted using the latest AES-128 hardware encryption engine. 
+
+Because workloads running in the cloud are loaded from a hard disk, Ubuntu also leverages its full disk encryption capabilities to secure your data at rest.
+
+Using AES, Ubuntu encrypts and decrypts all data written at disk, storing the encryption key (itself encrypted) in your VMs virtual disk. Only the virtual Trusted Platform Module (vTPM) associated with your CVM instance can decrypt the key.
+
+With Ubuntu’s Confidential VMs, your data is secured at runtime, rest, and boot. 
+
+At Canonical, We strongly believe that in the future, confidential computing and privacy-enhancing technologies will become the standard approach to computing. That’s why our portfolio of confidential computing solutions is available for free on all public clouds.
+
+To learn more about this topic, we invite you to read our whitepaper which provides an in-depth discussion on adopting a stronger approach to Azure cloud cyber security with Ubuntu.
+
+Deploy secure Ubuntu workloads on the public cloud today
+Using Ubuntu on the public cloud provides you the foundation you need to fortify your cloud workloads. With Ubuntu Pro’s extended security coverage, reduced downtime, compliance tooling, and confidential computing support, you can gain confidence and peace of mind with state-of-the-art security.
+
+Take your cyber cloud security to the next level with https://ubuntu.com/pro and confidential VMs and build a solid foundation for your security-sensitive environments
+
+Key features of Ubuntu Pro include:
+
+- 10 years of package updates and security maintenance*
+- Kernel Livepatch, which allows for continuous security patching and higher uptime and availability by allowing kernel security updates to be applied without a reboot**
+- Customised FIPS and Common Criteria EAL-compliant components for use in environments under compliance regimes such as FedRAMP, PCI, HIPAA and ISO
+- Patch coverage for Ubuntu’s infrastructure and application repositories, spanning hundreds of open source workloads including Apache Kafka, MongoDB, Node.js, RabbitMQ, Redis and more.
+- Integration with AWS security and compliance features, including AWS Security Hub, AWS CloudTrail and more — available from Q1 2020. 

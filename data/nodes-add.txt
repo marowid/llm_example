@@ -1,0 +1,7 @@
+
+# Add Nodes
+
+Adding a node to MAAS is typically done via a combination of DHCP (and TFTP),
+which should, by now, be enabled in your MAAS environment, and PXE, which you
+tell the system in question to use when it boots. This unattended manner of
+adding a node is called enlistment.
