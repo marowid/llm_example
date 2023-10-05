@@ -8,6 +8,8 @@ Applications:
 - Embeddings - applications to easily add embeddings to vector database
 - Chatbot - LLAMA v2 powered streamlit application providing chat capability.
 
+![LLM Architecture](llm.png)
+
 ## Environment
 
 Install conda in your environment and create the environment.
@@ -16,19 +18,39 @@ Install conda in your environment and create the environment.
 
 conda create -n llm
 conda activate llm
+```
+
+Check python version, it should be 3.11 or higher. If the version is different, please upgrade.
+
+```bash
+
+$ python --version
+Python 3.11.5
+```
+
+Install the requirements, then reinstall ctransformers
+
+```bash
 
 pip install -r requirements.txt
-
 pip uninstall ctransformers
 pip install ctransformers  --upgrade --force-reinstall
 ```
 
 ### Enable GPU support 
 
+### Initialise the database
+
+Initialize the detabase when running for the forst time
+
+```bash
+
+python ./db_build.py
+```
 
 ### Run Embeddings application
 
-Run the embeddings application 
+Run the embeddings application to create embeddings from your files
 
 ```
 streamlit run embedded-ui.py --server.port 9900
